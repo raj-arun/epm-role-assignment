@@ -7,6 +7,7 @@ import pandas as pd
 roleData = ""
 
 def getuserRoles(epmurl, epmuname, epmpwd, apiheaders):
+    st.write("Invoking the REST API....")
     reqResponse = requests.get(epmurl, auth=HTTPBasicAuth(epmuname, epmpwd), headers=apiheaders)
     if reqResponse.status_code == 200:
         roleData = json.loads(reqResponse.text)
