@@ -6,8 +6,8 @@ import pandas as pd
 
 roleData = ""
 
-def getRoles(emurl, epmuname, epmpwd, apiheaders):
-    reqResponse = requests.get(requestURL, auth=HTTPBasicAuth(uName, uPwd), headers=reqHeaders)
+def getRoles(epmurl, epmuname, epmpwd, apiheaders):
+    reqResponse = requests.get(epmurl, auth=HTTPBasicAuth(epmuname, epmpwd), headers=apiheaders)
     if reqResponse.status_code == 200:
         roleData = json.loads(reqResponse.text)
         st.write("REST API call successful")
@@ -52,7 +52,7 @@ st.write("REST End Point is : ", requestURL)
 reqHeaders = {}
 reqHeaders['Content-Type'] = 'application/json'
 
-st.button("Get Data", type="primary", on_click=getRoles(requestURL, uName, uPwd), reqHeaders)
+st.button("Get Data", type="primary", on_click=getRoles(requestURL, uName, uPwd, reqHeaders))
 
 '''
 reqResponse = requests.get(requestURL, auth=HTTPBasicAuth(uName, uPwd), headers=reqHeaders)
