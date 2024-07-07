@@ -7,9 +7,9 @@ import pandas as pd
 roleData = ""
 
 def getuserRoles(epmurl, epmuname, epmpwd, apiheaders):
-    st.write("Invoking the REST API....")
+    
     st.write("User name is : ", epmuname)
-    st.write("Password is : ", epmpwd)
+    st.write("Invoking the REST API....")
     reqResponse = requests.get(epmurl, auth=HTTPBasicAuth(epmuname, epmpwd), headers=apiheaders)
     if reqResponse.status_code == 200:
         roleData = json.loads(reqResponse.text)
@@ -21,6 +21,7 @@ def getuserRoles(epmurl, epmuname, epmpwd, apiheaders):
             rowList.append([value["firstname"],value["lastname"],value["userlogin"],value["roles"][0]["rolename"]])
 
         df = pd.DataFrame(rowList, columns = ['First Name', 'Last Name','Login Name','Role'])
+        st.subheader("Raw Data")
         st.write(df)
     else:
         st.write(reqResponse.status_code)
@@ -50,8 +51,8 @@ uPwd = st.text_input("EPM Password: ",disabled=disableinput,type="password")
 
 # variables to pass login information while invoking the REST API
 
-st.write("User name is : ", uName)
-st.write("Password is : ", uPwd)
+#st.write("User name is : ", uName)
+#st.write("Password is : ", uPwd)
 st.write("URL is : ", epmURL)
 
 requestURL = epmURL + "/interop/rest/security/v2/report/roleassignmentreport/user" #provide correct url
@@ -67,4 +68,4 @@ rowList = []
 st.write(roleData)
 
 
-st.subheader("Raw Data")
+
