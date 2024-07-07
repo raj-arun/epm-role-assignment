@@ -54,16 +54,5 @@ reqHeaders['Content-Type'] = 'application/json'
 
 st.button("Get Data", type="primary", on_click=getRoles(requestURL, uName, uPwd, reqHeaders))
 
-'''
-reqResponse = requests.get(requestURL, auth=HTTPBasicAuth(uName, uPwd), headers=reqHeaders)
-
-if reqResponse.status_code == 200:
-    roleData = json.loads(reqResponse.text)
-    st.write("REST API call successful")
-else:
-    st.write(reqResponse.status_code)
-'''
-
-
 st.divider()
 st.subheader("Raw Data")
