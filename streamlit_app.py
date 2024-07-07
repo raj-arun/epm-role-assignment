@@ -48,10 +48,6 @@ st.write("User name is : ", uName)
 st.write("Password is : ", uPwd)
 st.write("URL is : ", epmURL)
 
-#uName = ""  #provide user name
-#uPwd = "" #provide password
-#roleData = ""
-
 requestURL = epmURL + "/interop/rest/security/v2/report/roleassignmentreport/user" #provide correct url
 st.write("REST End Point is : ", requestURL)
 reqHeaders = {}
