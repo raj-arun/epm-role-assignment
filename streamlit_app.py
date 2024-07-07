@@ -30,7 +30,7 @@ def getuserRoles(epmurl, epmuname, epmpwd, apiheaders):
         #st.bar_chart(data=df_count, x="Role", y="First Name", x_label="Role", y_label="Count", color=None, horizontal=True, use_container_width=True)
         st.bar_chart(data=df_count, color=None, x_label="Role", y_label="Count", horizontal=True)
         st.divider()
-        pyg_app = StreamlitRenderer(df_count)
+        pyg_app = StreamlitRenderer(df)
  
         pyg_app.explorer()
     else:
