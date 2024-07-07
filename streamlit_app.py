@@ -29,7 +29,7 @@ epmURL = st.text_input("EPM Password: ",disabled=disableinput)
 
 # variables to pass login information while invoking the REST API
 
-st.write("User name is ": uName)
+st.write("User name is : " uName)
 st.write("Password is : " uPwd)
 st.write("URL is : " epmURL)
 
