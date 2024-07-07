@@ -62,7 +62,7 @@ st.button("Get Data", type="primary", on_click=getuserRoles(epmurl=requestURL, e
 st.divider()
 rowList = []
 
-st.write(roleData["details"])
+st.write(roleData)
 
 for index, value in enumerate(roleData["details"]):
     rowList.append([value["firstname"],value["lastname"],value["userlogin"],value["roles"][0]["rolename"]])
