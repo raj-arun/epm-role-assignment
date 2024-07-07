@@ -13,11 +13,15 @@ role = st.radio(
 
 if role == "Yes":
     st.write("You can use this service.")
+    disableinput = False
 else:
     st.write("You cannot user this serivice.")
+    disableinput = True
+
 st.divider()
-st.text_input("EPM URL: ")
-st.text_input("EPM Username: ")
-st.text_input("EPM Password: ")
+st.text_input("EPM URL: ",disabled=disableinput)
+st.text_input("EPM Username: ",disabled=disableinput)
+st.text_input("EPM Password: ",disabled=disableinput)
+
 st.divider()
 st.subheader("Raw Data")
