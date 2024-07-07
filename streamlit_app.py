@@ -26,7 +26,7 @@ def getuserRoles(epmurl, epmuname, epmpwd, apiheaders):
         st.subheader("Chart ara")
         df_count = df.groupby("Role").count()
         st.write(df_count)
-        #st.bar_chart(data=df_count, *, x='Role', y=None, x_label=Role, y_label=None, color=None, horizontal=False, width=None, height=None, use_container_width=True)
+        st.bar_chart(data=df_count, *, x="Role", y="First Name", x_label="Role", y_label="Count", color="Role", horizontal=True, use_container_width=True)
     else:
         st.write(reqResponse.status_code)
     
