@@ -52,22 +52,21 @@ else:
     disableinput = True
 
 st.divider()
-epmURL = st.text_input("EPM URL: ",disabled=disableinput)
-uName = st.text_input("EPM Username: ",disabled=disableinput)
-uPwd = st.text_input("EPM Password: ",disabled=disableinput,type="password")
 
-# variables to pass login information while invoking the REST API
+with st.form("epm form"):
+    epmURL = st.text_input("EPM URL: ",disabled=disableinput)
+    uName = st.text_input("EPM Username: ",disabled=disableinput)
+    uPwd = st.text_input("EPM Password: ",disabled=disableinput,type="password")
+    submitted = st.form_submit_button("Submit",)
+    if submitted:
+        st.write("URL is : ", epmURL)
+        requestURL = epmURL + "/interop/rest/security/v2/report/roleassignmentreport/user" #provide correct url
+        st.write("REST End Point is : ", requestURL)
+        reqHeaders = {}
+        reqHeaders['Content-Type'] = 'application/json'
+        getuserRoles(epmurl=requestURL, epmuname=uName, epmpwd=uPwd, apiheaders=reqHeaders)
 
-#st.write("User name is : ", uName)
-#st.write("Password is : ", uPwd)
-st.write("URL is : ", epmURL)
-
-requestURL = epmURL + "/interop/rest/security/v2/report/roleassignmentreport/user" #provide correct url
-st.write("REST End Point is : ", requestURL)
-reqHeaders = {}
-reqHeaders['Content-Type'] = 'application/json'
-
-st.button("Get Data", type="primary", on_click=getuserRoles(epmurl=requestURL, epmuname=uName, epmpwd=uPwd, apiheaders=reqHeaders))
+#st.button("Get Data", type="primary", on_click=getuserRoles(epmurl=requestURL, epmuname=uName, epmpwd=uPwd, apiheaders=reqHeaders))
 
 st.divider()
 rowList = []
