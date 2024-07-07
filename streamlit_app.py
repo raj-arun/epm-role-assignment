@@ -3,7 +3,7 @@ import requests
 import json
 from requests.auth import HTTPBasicAuth
 import pandas as pd
-from pygwalker.api.streamlit import StreamlitRenderer
+from pygwalker.api.streamlit import StreamlitRenderer #display Pygwalker
 
 roleData = ""
 
