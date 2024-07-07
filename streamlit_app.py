@@ -10,7 +10,7 @@ role = st.radio(
     ["Yes", "No"],)
 
 if role == "Yes":
-    st.write("You can use this service".)
+    st.write("You can use this service.")
 else:
     st.write("You cannot user this serivice.")
 
