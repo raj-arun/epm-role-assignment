@@ -4,6 +4,16 @@ import json
 from requests.auth import HTTPBasicAuth
 import pandas as pd
 
+roleData = ""
+
+def getRoles(emurl, epmuname, epmpwd, apiheaders):
+    reqResponse = requests.get(requestURL, auth=HTTPBasicAuth(uName, uPwd), headers=reqHeaders)
+    if reqResponse.status_code == 200:
+        roleData = json.loads(reqResponse.text)
+        st.write("REST API call successful")
+    else:
+        st.write(reqResponse.status_code)
+    
 st.title("🎈 EPM Role Assignment Report")
 st.write(
     "Let's start building! For help and inspiration, head over to [docs.streamlit.io](https://docs.streamlit.io/)."
@@ -35,13 +45,16 @@ st.write("URL is : ", epmURL)
 
 uName = ""  #provide user name
 uPwd = "" #provide password
-roleData = ""
+#roleData = ""
 
 requestURL = epmURL + "/interop/rest/security/v2/report/roleassignmentreport/user" #provide correct url
 st.write("REST End Point is : ", requestURL)
 reqHeaders = {}
 reqHeaders['Content-Type'] = 'application/json'
 
+st.button("Get Data", type="primary", on_click=getRoles(requestURL, uName, uPwd), reqHeaders)
+
+'''
 reqResponse = requests.get(requestURL, auth=HTTPBasicAuth(uName, uPwd), headers=reqHeaders)
 
 if reqResponse.status_code == 200:
@@ -49,7 +62,7 @@ if reqResponse.status_code == 200:
     st.write("REST API call successful")
 else:
     st.write(reqResponse.status_code)
-
+'''
 
 
 st.divider()
