@@ -3,6 +3,7 @@ import requests
 import json
 from requests.auth import HTTPBasicAuth
 import pandas as pd
+from pygwalker.api.streamlit import StreamlitRenderer
 
 roleData = ""
 
@@ -28,6 +29,10 @@ def getuserRoles(epmurl, epmuname, epmpwd, apiheaders):
         st.write(df_count)
         #st.bar_chart(data=df_count, x="Role", y="First Name", x_label="Role", y_label="Count", color=None, horizontal=True, use_container_width=True)
         st.bar_chart(data=df_count, color=None, x_label="Role", y_label="Count", horizontal=True)
+        st.divder()
+        pyg_app = StreamlitRenderer(df_count)
+ 
+        pyg_app.explorer()
     else:
         st.write(reqResponse.status_code)
     
