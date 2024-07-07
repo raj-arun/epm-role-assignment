@@ -33,7 +33,7 @@ def getuserRoles(epmurl, epmuname, epmpwd, apiheaders):
     
 st.title("🎈 EPM Role Assignment Report")
 st.write(
-    "Let's start building! For help and inspiration, head over to [docs.streamlit.io](https://docs.streamlit.io/)."
+    "Enter the URL, User name and password. The app will generate the list of users along with their roles"
 )
 
 st.divider()
