@@ -48,8 +48,8 @@ st.write("User name is : ", uName)
 st.write("Password is : ", uPwd)
 st.write("URL is : ", epmURL)
 
-uName = ""  #provide user name
-uPwd = "" #provide password
+#uName = ""  #provide user name
+#uPwd = "" #provide password
 #roleData = ""
 
 requestURL = epmURL + "/interop/rest/security/v2/report/roleassignmentreport/user" #provide correct url
@@ -57,7 +57,7 @@ st.write("REST End Point is : ", requestURL)
 reqHeaders = {}
 reqHeaders['Content-Type'] = 'application/json'
 
-st.button("Get Data", type="primary", on_click=getuserRoles(requestURL, uName, uPwd, reqHeaders))
+st.button("Get Data", type="primary", on_click=getuserRoles(epmurl=requestURL, epmuname=uName, epmpwd=uPwd, apiheaders=reqHeaders))
 
 st.divider()
 st.subheader("Raw Data")
