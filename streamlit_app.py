@@ -23,6 +23,10 @@ def getuserRoles(epmurl, epmuname, epmpwd, apiheaders):
         df = pd.DataFrame(rowList, columns = ['First Name', 'Last Name','Login Name','Role'])
         st.subheader("Raw Data")
         st.write(df)
+        st.subheader("Chart ara")
+        df_count = df.groupby("Role").count()
+        st.write(df_count)
+        #st.bar_chart(data=df_count, *, x='Role', y=None, x_label=Role, y_label=None, color=None, horizontal=False, width=None, height=None, use_container_width=True)
     else:
         st.write(reqResponse.status_code)
     
