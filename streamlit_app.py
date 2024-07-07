@@ -12,6 +12,8 @@ def getuserRoles(epmurl, epmuname, epmpwd, apiheaders):
     if reqResponse.status_code == 200:
         roleData = json.loads(reqResponse.text)
         st.write("REST API call successful")
+        # prompt: print the dataSlice
+        st.write(json.dumps(dataSlice, indent=4, sort_keys=True))
     else:
         st.write(reqResponse.status_code)
     
