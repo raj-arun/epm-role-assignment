@@ -25,7 +25,7 @@ else:
 st.divider()
 uName= st.text_input("EPM URL: ",disabled=disableinput)
 uPwd = st.text_input("EPM Username: ",disabled=disableinput)
-epmURL = st.text_input("EPM Password: ",disabled=disableinput)
+epmURL = st.text_input("EPM Password: ",disabled=disableinput,type="password")
 
 # variables to pass login information while invoking the REST API
 
@@ -37,7 +37,8 @@ uName = ""  #provide user name
 uPwd = "" #provide password
 dataSlice = ""
 
-requestURL = "https://epmurl/interop/rest/security/v2/report/roleassignmentreport/user" #provide correct url
+requestURL = epmURL + "/interop/rest/security/v2/report/roleassignmentreport/user" #provide correct url
+st.write("REST End Point is : ", requestURL)
 reqHeaders = {}
 reqHeaders['Content-Type'] = 'application/json'
 
