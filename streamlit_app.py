@@ -35,12 +35,21 @@ st.write("URL is : ", epmURL)
 
 uName = ""  #provide user name
 uPwd = "" #provide password
-dataSlice = ""
+roleData = ""
 
 requestURL = epmURL + "/interop/rest/security/v2/report/roleassignmentreport/user" #provide correct url
 st.write("REST End Point is : ", requestURL)
 reqHeaders = {}
 reqHeaders['Content-Type'] = 'application/json'
+
+reqResponse = requests.get(requestURL, auth=HTTPBasicAuth(uName, passwd), headers=reqHeaders)
+
+if reqResponse.status_code == 200:
+    roleData = json.loads(reqResponse.text)
+    st.write("REST API call successful")
+else:
+    st.write(reqResponse.status_code)
+
 
 
 st.divider()
