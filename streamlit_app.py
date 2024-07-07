@@ -60,4 +60,11 @@ reqHeaders['Content-Type'] = 'application/json'
 st.button("Get Data", type="primary", on_click=getuserRoles(epmurl=requestURL, epmuname=uName, epmpwd=uPwd, apiheaders=reqHeaders))
 
 st.divider()
+rowList = []
+for index, value in enumerate(roleData["details"]):
+    rowList.append([value["firstname"],value["lastname"],value["userlogin"],value["roles"][0]["rolename"]])
+
+df = pd.DataFrame(rowList, columns = ['First Name', 'Last Name','Login Name','Role'])
+st.write(df)
+
 st.subheader("Raw Data")
