@@ -1,4 +1,8 @@
 import streamlit as st
+import requests
+import json
+from requests.auth import HTTPBasicAuth
+import pandas as pd
 
 st.title("🎈 EPM Role Assignment Report")
 st.write(
@@ -19,9 +23,24 @@ else:
     disableinput = True
 
 st.divider()
-st.text_input("EPM URL: ",disabled=disableinput)
-st.text_input("EPM Username: ",disabled=disableinput)
-st.text_input("EPM Password: ",disabled=disableinput)
+uName= st.text_input("EPM URL: ",disabled=disableinput)
+uPwd = st.text_input("EPM Username: ",disabled=disableinput)
+epmURL = st.text_input("EPM Password: ",disabled=disableinput)
+
+# variables to pass login information while invoking the REST API
+
+st.write("User name is ": uName)
+st.write("Password is : " uPwd)
+st.write("URL is : " epmURL)
+
+uName = ""  #provide user name
+uPwd = "" #provide password
+dataSlice = ""
+
+requestURL = "https://epmurl/interop/rest/security/v2/report/roleassignmentreport/user" #provide correct url
+reqHeaders = {}
+reqHeaders['Content-Type'] = 'application/json'
+
 
 st.divider()
 st.subheader("Raw Data")
