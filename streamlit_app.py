@@ -15,7 +15,7 @@ def getuserRoles(epmurl, epmuname, epmpwd, apiheaders):
         roleData = json.loads(reqResponse.text)
         st.write("REST API call successful")
         # prompt: print the dataSlice
-        st.write(json.dumps(roleData, indent=4, sort_keys=True))
+        #st.write(json.dumps(roleData, indent=4, sort_keys=True))
     else:
         st.write(reqResponse.status_code)
     
@@ -61,6 +61,9 @@ st.button("Get Data", type="primary", on_click=getuserRoles(epmurl=requestURL, e
 
 st.divider()
 rowList = []
+
+st.write(roleData["details")
+
 for index, value in enumerate(roleData["details"]):
     rowList.append([value["firstname"],value["lastname"],value["userlogin"],value["roles"][0]["rolename"]])
 
