@@ -10,7 +10,7 @@ roleData = ""
 def getuserRoles(epmurl, epmuname, epmpwd, apiheaders):
     col1, col2, col3, col4 = st.columns(4)
     with st.container():
-        st.write("User name is : ", epmuname)
+        #st.write("User name is : ", epmuname)
         st.write("Invoking the REST API....")
     
         reqResponse = requests.get(epmurl, auth=HTTPBasicAuth(epmuname, epmpwd), headers=apiheaders)
@@ -30,6 +30,7 @@ def getuserRoles(epmurl, epmuname, epmpwd, apiheaders):
             st.write(df_count)
             #st.bar_chart(data=df_count, x="Role", y="First Name", x_label="Role", y_label="Count", color=None, horizontal=True, use_container_width=True)
             st.bar_chart(data=df_count, color=None, x_label="Count", y_label="Role", horizontal=True, height=200)
+            st.divider()
             st.divider()
             pyg_app = StreamlitRenderer(df)
      
