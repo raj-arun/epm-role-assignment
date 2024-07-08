@@ -31,7 +31,7 @@ def getuserRoles(epmurl, epmuname, epmpwd, apiheaders):
             st.divider()
             st.bar_chart(data=df_count, color=None, x_label="Count", y_label="Role", horizontal=True, height=200)
             st.divider()
-            col1.metric(:blue-background["Service Administrators", "10"])
+            col1.metric(blue-background["Service Administrators", "10"])
             col2.metric("Users", "20")
             col3.metric("Power Users", "7")
             col4.metric("Viewers", "3")
