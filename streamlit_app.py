@@ -10,7 +10,6 @@ roleData = ""
 def getuserRoles(epmurl, epmuname, epmpwd, apiheaders):
     col1, col2, col3, col4 = st.columns(4)
     with st.container():
-        #st.write("User name is : ", epmuname)
         st.write("Invoking the REST API....")
     
         reqResponse = requests.get(epmurl, auth=HTTPBasicAuth(epmuname, epmpwd), headers=apiheaders)
@@ -46,8 +45,7 @@ st.write(
 
 st.divider()
 
-with st.container():
-    st.write("This is inside the container")
+with st.sidebar:
     role = st.radio(
         "Do you have Service Adminstrator Role?",
         ["Yes", "No"],)
@@ -58,18 +56,14 @@ with st.container():
     else:
         st.write("You cannot user this serivice.")
         disableinput = True
-    
-    st.divider()
-    
+
     with st.form("epm form"):
         epmURL = st.text_input("EPM URL: ",disabled=disableinput)
         uName = st.text_input("EPM Username: ",disabled=disableinput)
         uPwd = st.text_input("EPM Password: ",disabled=disableinput,type="password")
         submitted = st.form_submit_button("Submit",)
         if submitted:
-            #st.write("URL is : ", epmURL)
             requestURL = epmURL + "/interop/rest/security/v2/report/roleassignmentreport/user" #provide correct url
-            #st.write("REST End Point is : ", requestURL)
             reqHeaders = {}
             reqHeaders['Content-Type'] = 'application/json'
             getuserRoles(epmurl=requestURL, epmuname=uName, epmpwd=uPwd, apiheaders=reqHeaders)
