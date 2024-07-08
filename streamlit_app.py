@@ -17,7 +17,7 @@ def getuserRoles(epmurl, epmuname, epmpwd, apiheaders):
     
         if reqResponse.status_code == 200:
             roleData = json.loads(reqResponse.text)
-            st.write("REST API call successful")
+            st.success("REST API call successful")
             rowList = []
             for index, value in enumerate(roleData["details"]):
                 rowList.append([value["firstname"],value["lastname"],value["userlogin"],value["roles"][0]["rolename"]])
