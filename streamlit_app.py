@@ -81,7 +81,39 @@ with tab1:
             st.write("REST End Point is : ", requestURL)
             reqHeaders = {}
             reqHeaders['Content-Type'] = 'application/json'
-            getuserRoles(epmurl=requestURL, epmuname=uName, epmpwd=uPwd, apiheaders=reqHeaders)
+            #getuserRoles(epmurl=requestURL, epmuname=uName, epmpwd=uPwd, apiheaders=reqHeaders)
+    
+        tab1.write("User name is : ", epmuname)
+        tab1.write("Invoking the REST API....")
+    
+        col1, col2, col3, col4 = st.columns(4)
+    
+        reqResponse = requests.get(epmurl, auth=HTTPBasicAuth(epmuname, epmpwd), headers=apiheaders)
+
+        if reqResponse.status_code == 200:
+            roleData = json.loads(reqResponse.text)
+            tab1.write("REST API call successful")
+            rowList = []
+            for index, value in enumerate(roleData["details"]):
+                rowList.append([value["firstname"],value["lastname"],value["userlogin"],value["roles"][0]["rolename"]])
+    
+            df = pd.DataFrame(rowList, columns = ['First Name', 'Last Name','Login Name','Role'])
+            tab2.subheader("Raw Data")
+            tab2.write(df)
+            tab2.subheader("Chart Area")
+            df_count = df[['Role','First Name']].groupby("Role").count()
+            tab2.write(df_count)
+            #st.bar_chart(data=df_count, x="Role", y="First Name", x_label="Role", y_label="Count", color=None, horizontal=True, use_container_width=True)
+            tab2.bar_chart(data=df_count, color=None, x_label="Count", y_label="Role", horizontal=True, height=200)
+            col1.metric("Temperature", "70 °F", "1.2 °F")
+            col2.metric("Wind", "9 mph", "-8%")
+            col3.metric("Humidity", "86%", "4%")
+            tab2.divider()
+            pyg_app = StreamlitRenderer(df)
+     
+            pyg_app.explorer()
+        else:
+            tab1.write(reqResponse.status_code)
 
 #st.button("Get Data", type="primary", on_click=getuserRoles(epmurl=requestURL, epmuname=uName, epmpwd=uPwd, apiheaders=reqHeaders))
 
