@@ -67,9 +67,9 @@ with st.container():
         uPwd = st.text_input("EPM Password: ",disabled=disableinput,type="password")
         submitted = st.form_submit_button("Submit",)
         if submitted:
-            st.write("URL is : ", epmURL)
+            #st.write("URL is : ", epmURL)
             requestURL = epmURL + "/interop/rest/security/v2/report/roleassignmentreport/user" #provide correct url
-            st.write("REST End Point is : ", requestURL)
+            #st.write("REST End Point is : ", requestURL)
             reqHeaders = {}
             reqHeaders['Content-Type'] = 'application/json'
             getuserRoles(epmurl=requestURL, epmuname=uName, epmpwd=uPwd, apiheaders=reqHeaders)
