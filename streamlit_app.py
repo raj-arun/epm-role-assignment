@@ -10,13 +10,13 @@ roleData = ""
 def getuserRoles(epmurl, epmuname, epmpwd, apiheaders):
     col1, col2, col3, col4 = st.columns(4)
     with st.container():
-        st.write("Invoking the REST API....")
+        #st.write("Invoking the REST API....")
     
         reqResponse = requests.get(epmurl, auth=HTTPBasicAuth(epmuname, epmpwd), headers=apiheaders)
     
         if reqResponse.status_code == 200:
             roleData = json.loads(reqResponse.text)
-            st.success("REST API call successful")
+            #st.success("REST API call successful")
             rowList = []
             for index, value in enumerate(roleData["details"]):
                 rowList.append([value["firstname"],value["lastname"],value["userlogin"],value["roles"][0]["rolename"]])
