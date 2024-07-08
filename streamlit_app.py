@@ -45,28 +45,28 @@ st.write(
 
 st.divider()
 
-with st.sidebar:
-    role = st.radio(
-        "Do you have Service Adminstrator Role?",
-        ["Yes", "No"],)
-    
-    if role == "Yes":
-        st.write("You can use this service.")
-        disableinput = False
-    else:
-        st.write("You cannot user this serivice.")
-        disableinput = True
 
-    with st.form("epm form"):
-        epmURL = st.text_input("EPM URL: ",disabled=disableinput)
-        uName = st.text_input("EPM Username: ",disabled=disableinput)
-        uPwd = st.text_input("EPM Password: ",disabled=disableinput,type="password")
-        submitted = st.form_submit_button("Submit",)
-        if submitted:
-            requestURL = epmURL + "/interop/rest/security/v2/report/roleassignmentreport/user" #provide correct url
-            reqHeaders = {}
-            reqHeaders['Content-Type'] = 'application/json'
-            getuserRoles(epmurl=requestURL, epmuname=uName, epmpwd=uPwd, apiheaders=reqHeaders)
+role = st.sidebar.radio(
+    "Do you have Service Adminstrator Role?",
+    ["Yes", "No"],)
+
+if role == "Yes":
+    st.sidebar.write("You can use this service.")
+    disableinput = False
+else:
+    st.sidebar.write("You cannot user this serivice.")
+    disableinput = True
+
+with st.sidebar.form("epm form"):
+    epmURL = st.text_input("EPM URL: ",disabled=disableinput)
+    uName = st.text_input("EPM Username: ",disabled=disableinput)
+    uPwd = st.text_input("EPM Password: ",disabled=disableinput,type="password")
+    submitted = st.form_submit_button("Submit",)
+    if submitted:
+        requestURL = epmURL + "/interop/rest/security/v2/report/roleassignmentreport/user" #provide correct url
+        reqHeaders = {}
+        reqHeaders['Content-Type'] = 'application/json'
+        getuserRoles(epmurl=requestURL, epmuname=uName, epmpwd=uPwd, apiheaders=reqHeaders)
 
 #st.button("Get Data", type="primary", on_click=getuserRoles(epmurl=requestURL, epmuname=uName, epmpwd=uPwd, apiheaders=reqHeaders))
 
