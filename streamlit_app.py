@@ -58,7 +58,7 @@ else:
     disableinput = True
 
 #with st.sidebar.form("epm form"):
-form = st.form("login_form")    
+form = st.sidebar.form("login_form")    
 epmURL = form.text_input("EPM URL: ",disabled=disableinput)
 uName = form.text_input("EPM Username: ",disabled=disableinput)
 uPwd = form.text_input("EPM Password: ",disabled=disableinput,type="password")
