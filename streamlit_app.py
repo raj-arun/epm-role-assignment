@@ -57,16 +57,17 @@ else:
     st.sidebar.write("You cannot user this serivice.")
     disableinput = True
 
-with st.sidebar.form("epm form"):
-    epmURL = st.text_input("EPM URL: ",disabled=disableinput)
-    uName = st.text_input("EPM Username: ",disabled=disableinput)
-    uPwd = st.text_input("EPM Password: ",disabled=disableinput,type="password")
-    submitted = st.form_submit_button("Submit",)
-    if submitted:
-        requestURL = epmURL + "/interop/rest/security/v2/report/roleassignmentreport/user" #provide correct url
-        reqHeaders = {}
-        reqHeaders['Content-Type'] = 'application/json'
-        getuserRoles(epmurl=requestURL, epmuname=uName, epmpwd=uPwd, apiheaders=reqHeaders)
+#with st.sidebar.form("epm form"):
+form = st.form("login_form")    
+epmURL = form.text_input("EPM URL: ",disabled=disableinput)
+uName = form.text_input("EPM Username: ",disabled=disableinput)
+uPwd = form.text_input("EPM Password: ",disabled=disableinput,type="password")
+submitted = form.form_submit_button("Submit",)
+if submitted:
+    requestURL = epmURL + "/interop/rest/security/v2/report/roleassignmentreport/user" #provide correct url
+    reqHeaders = {}
+    reqHeaders['Content-Type'] = 'application/json'
+    getuserRoles(epmurl=requestURL, epmuname=uName, epmpwd=uPwd, apiheaders=reqHeaders)
 
 #st.button("Get Data", type="primary", on_click=getuserRoles(epmurl=requestURL, epmuname=uName, epmpwd=uPwd, apiheaders=reqHeaders))
 
