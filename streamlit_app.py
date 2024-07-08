@@ -29,9 +29,10 @@ def getuserRoles(epmurl, epmuname, epmpwd, apiheaders):
             df_count = df[['Role','First Name']].groupby("Role").count()
             st.write(df_count)
             #st.bar_chart(data=df_count, x="Role", y="First Name", x_label="Role", y_label="Count", color=None, horizontal=True, use_container_width=True)
+            st.divider()
             st.bar_chart(data=df_count, color=None, x_label="Count", y_label="Role", horizontal=True, height=200)
             st.divider()
-            st.divider()
+            
             pyg_app = StreamlitRenderer(df)
      
             pyg_app.explorer()
