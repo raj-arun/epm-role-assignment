@@ -8,11 +8,13 @@ from pygwalker.api.streamlit import StreamlitRenderer #display Pygwalker
 roleData = ""
 
 def getuserRoles(epmurl, epmuname, epmpwd, apiheaders):
-    col1, col2, col3, col4 = st.columns(4)
-    with st.container():
+    
+    with tab2:
+
         st.write("User name is : ", epmuname)
         st.write("Invoking the REST API....")
-    
+        col1, col2, col3, col4 = st.columns(4)
+        
         reqResponse = requests.get(epmurl, auth=HTTPBasicAuth(epmuname, epmpwd), headers=apiheaders)
     
         if reqResponse.status_code == 200:
@@ -30,6 +32,9 @@ def getuserRoles(epmurl, epmuname, epmpwd, apiheaders):
             st.write(df_count)
             #st.bar_chart(data=df_count, x="Role", y="First Name", x_label="Role", y_label="Count", color=None, horizontal=True, use_container_width=True)
             st.bar_chart(data=df_count, color=None, x_label="Count", y_label="Role", horizontal=True, height=200)
+            col1.metric("Temperature", "70 °F", "1.2 °F")
+            col2.metric("Wind", "9 mph", "-8%")
+            col3.metric("Humidity", "86%", "4%")
             st.divider()
             pyg_app = StreamlitRenderer(df)
      
@@ -44,8 +49,9 @@ st.write(
 
 st.divider()
 
-with st.container():
-    st.write("This is inside the container")
+tab1, tab2 = st.tabs(["Input", "Dashboard"])
+
+with tab1:
     role = st.radio(
         "Do you have Service Adminstrator Role?",
         ["Yes", "No"],)
